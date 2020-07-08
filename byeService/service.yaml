@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  bye-svc
+  namespace: default
+spec:
+  #type: NodePort
+  selector:
+    app:  byeapp
+  ports:
+  - port:  80
+    targetPort:  3001
+    #nodePort: 32002
+    protocol: TCP

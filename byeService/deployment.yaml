@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: byeapp
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app:  byeapp
+  template:
+    metadata:
+      labels:
+        app: byeapp
+    spec:
+      containers:
+      - name: byeapp
+        image: leonemoe/bye
+        ports:
+        - containerPort: 3001
+          protocol: TCP
+        env:
+          - name: POD_OP
+            valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
